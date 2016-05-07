@@ -67,7 +67,14 @@ The third sample is identical to second, except the base class includes 13 signa
   protected abstract void Execute();
 ```
 
-The 13th sign
+Refer Sample03Base.cs for complete implementation of above signatures. 
+
+While above signatures are good enough for pretty intense self-contained templates, they are not sufficient to support features like layouts and named sections. The gap is not too wide (refer subsequent samples). Nevertheless, at some point, you should take a practical view. If the objective is to have 100% of Razor features, you should not re-invent the wheel, instead, consider taking dependency on MVC DLLs.
+
+
+
+
+
 
 
 
