@@ -38,7 +38,7 @@ Sample 2 adds support for @helper feature of Razor. Use of @helper would generat
 ```cs
 protected static void WriteLiteralTo(TextWriter output, string something);
 protected static void WriteTo(TextWriter output, object something);
-protected void Write(Action<TextWriter> writeAction)
+protected void Write( /* HelperResult */ Action<TextWriter> writeAction)
 ```
 
 The third signature which takes an `Action<TextWriter>` might look odd. If you are familiar with internals of Razor (MVC), you would expect an HelperResult class here. In order to mimimize the moving parts, the RTT tool uses `Action<TextWriter>` instead. As such, the base-class should support the third signature above. Implementation of these signatures are very basic. Refer `Sample02Base.cs` for details.
