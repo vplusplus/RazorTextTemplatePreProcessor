@@ -112,15 +112,28 @@ namespace NAMESPACE
         {
             IDictionary<string, object> dictionary = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
 
+            /// <summary>
+            /// Returns value of suggested member, or NULL if such member is not present.
+            /// Member name is NOT case-sensitive.
+            /// </summary>
             public override bool TryGetMember(GetMemberBinder binder, out object result)
             {
                 return dictionary.TryGetValue(binder.Name, out result);
             }
+
+            /// <summary>
+            /// Adds (replace) value of suggested member.
+            /// Member name is NOT case-sensitive.
+            /// </summary>
             public override bool TrySetMember(SetMemberBinder binder, object value)
             {
                 dictionary[binder.Name] = value; return true;
             }
         }
+
+        /// <summary>
+        /// Represents target of template's output, including named sections. 
+        /// </summary>
         private sealed class Context
         {
             public Context(Context next = null)
@@ -128,21 +141,49 @@ namespace NAMESPACE
                 this.Next = next;
             }
 
+            /// <summary>
+            /// Points to the next (inner) template in the chain.
+            /// </summary>
             public readonly Context Next = null;
+
+            /// <summary>
+            /// Optional name of the layout (parent or outer) template
+            /// </summary>
             public string Layout = null;
+
+            /// <summary>
+            /// Buffer that holds generated output of current template.
+            /// </summary>
             public readonly StringWriter Output = new StringWriter(new StringBuilder(1024));
+
+            /// <summary>
+            /// Named sections defined in current template.
+            /// </summary>
             public readonly IDictionary<string, Action> Sections = new Dictionary<string, Action>(StringComparer.OrdinalIgnoreCase);
         }
+
+        /// <summary>
+        /// Provides a common anchor for gathering generated output 
+        /// from multiple-templates associated with Layout property.
+        /// </summary>
         private sealed class NestedContext
         {
             private int __level = 0;
 
+            /// <summary>
+            /// Creates a starting point of nested context.
+            /// </summary>
             public NestedContext()
             {
                 this.Current = new Context();
                 this.ViewBag = new DynamicDictionary();
             }
 
+            /// <summary>
+            /// Creates another parent context.
+            /// Current context is linked as 'Next' context.
+            /// There is NO Pop().
+            /// </summary>
             public NestedContext Push()
             {
                 if (++__level > 10) throw new Exception("Too many levels of nesting. Possible cause: Templates have a circular Layout reference.");
@@ -150,7 +191,15 @@ namespace NAMESPACE
                 return this;
             }
 
+            /// <summary>
+            /// The view bag associated with this rendering session.
+            /// ViewBag is shared by all templates, as such, the view bag is at the nested context.
+            /// </summary>
             public dynamic ViewBag { get; private set; }
+
+            /// <summary>
+            /// The outer-most context of this nested context.
+            /// </summary>
             public Context Current { get; private set; }
         }
 
@@ -287,6 +336,9 @@ namespace NAMESPACE
             }
         }
 
+        /// <summary>
+        /// Following signature is implemented by code generated from Razor template.
+        /// </summary>
         protected abstract void Execute();
 
         #endregion
@@ -300,6 +352,9 @@ namespace NAMESPACE
     //.............................................................................................
     public abstract class HtmlTemplate<TModel> : HtmlTemplate
     {
+        /// <summary>
+        /// If you need intellisense on this, you are in a wrong business...
+        /// </summary>
         public TModel Model
         {
             get; set;

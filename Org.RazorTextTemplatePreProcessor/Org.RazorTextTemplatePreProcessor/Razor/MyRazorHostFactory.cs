@@ -139,12 +139,16 @@ namespace Org.RazorTextTemplatePreProcessor
         //.........................................................................................
         private static CodeGeneratorContext RemoveBaseClass(this CodeGeneratorContext context)
         {
+            if (null == context) throw new ArgumentNullException("content");
+
             context.GeneratedClass.BaseTypes.Clear();
             return context;
         }
 
         private static CodeGeneratorContext ChangeVisibility(this CodeGeneratorContext context, string visibility)
         {
+            if (null == context) throw new ArgumentNullException("content");
+
             visibility = (visibility ?? "public").Trim().ToLower();
 
             var generatedClass = context.GeneratedClass;
@@ -166,6 +170,8 @@ namespace Org.RazorTextTemplatePreProcessor
 
         private static CodeGeneratorContext RemoveCTOR(this CodeGeneratorContext context)
         {
+            if (null == context) throw new ArgumentNullException("content");
+
             var generatedClass = context.GeneratedClass;
 
             var ctor = generatedClass.Members.OfType<CodeConstructor>().FirstOrDefault();
@@ -176,6 +182,8 @@ namespace Org.RazorTextTemplatePreProcessor
 
         private static CodeGeneratorContext GeneratedClassIsPartial(this CodeGeneratorContext context)
         {
+            if (null == context) throw new ArgumentNullException("content");
+
             var generatedClass = context.GeneratedClass;
 
             generatedClass.IsPartial = true;
@@ -184,6 +192,8 @@ namespace Org.RazorTextTemplatePreProcessor
 
         private static CodeGeneratorContext ExecuteMethodIsProtected(this CodeGeneratorContext context)
         {
+            if (null == context) throw new ArgumentNullException("content");
+
             var generatedClass = context.GeneratedClass;
             context.TargetMethod.Attributes = MemberAttributes.Override | MemberAttributes.Family;
             return context;
@@ -191,6 +201,8 @@ namespace Org.RazorTextTemplatePreProcessor
 
         private static CodeGeneratorContext RemoveExecuteMethod(this CodeGeneratorContext context)
         {
+            if (null == context) throw new ArgumentNullException("content");
+
             var generatedClass = context.GeneratedClass;
             generatedClass.Members.Remove(context.TargetMethod);
             return context;
@@ -198,6 +210,8 @@ namespace Org.RazorTextTemplatePreProcessor
 
         private static CodeGeneratorContext RemoveApplicationInstanceProperty(this CodeGeneratorContext context)
         {
+            if (null == context) throw new ArgumentNullException("content");
+
             var generatedClass = context.GeneratedClass;
 
             var appInstanceProperty = generatedClass
@@ -212,6 +226,8 @@ namespace Org.RazorTextTemplatePreProcessor
 
         private static CodeGeneratorContext InjectJustEnoughWriteMethods(this CodeGeneratorContext context)
         {
+            if (null == context) throw new ArgumentNullException("content");
+
             const string writeObjectLiteralTo = @"
             if (null != writer && null != value) writer.Write(Convert.ToString(value));
             ";
@@ -228,6 +244,7 @@ namespace Org.RazorTextTemplatePreProcessor
             if (null != writer && null != value) WriteLiteralTo(writer, value);
             ";
 
+            // TODO: Remove the magic strings below.
             context.GeneratedClass
                 .AddPrivateStaticMetod<TextWriter, object>("WriteLiteralTo", "writer", "value", writeObjectLiteralTo)
                 .AddPrivateStaticMetod<TextWriter, string>("WriteLiteralTo", "writer", "value", writeStringLiteralTo)
@@ -242,6 +259,12 @@ namespace Org.RazorTextTemplatePreProcessor
 
         private static CodeTypeDeclaration AddPrivateStaticMetod<TArg1, TArg2>(this CodeTypeDeclaration generatedClass, string methodName, string arg1Name, string arg2Name, string body)
         {
+            if (null == generatedClass) throw new ArgumentNullException("generatedClass");
+            if (null == methodName) throw new ArgumentNullException("methodName");
+            if (null == arg1Name) throw new ArgumentNullException("arg1Name");
+            if (null == arg2Name) throw new ArgumentNullException("arg2Name");
+            if (null == body) throw new ArgumentNullException("body");
+
             var method = new CodeMemberMethod()
             {
                 Name = methodName,
@@ -260,6 +283,13 @@ namespace Org.RazorTextTemplatePreProcessor
         //.........................................................................................
         #region ReadDefaultImportsFromNearestWebConfig()
         //.........................................................................................
+        /// <summary>
+        /// Returns the imports as defined in web.config nearest to given input file.
+        /// Returns an empty sequence if a web.config can't be located or the section is not defined.
+        /// To avoid taking few dependencies, bit of reflection and some ugly code,
+        /// following implementation uses brute force parsing of web.config.
+        /// The logic may need correction if the web.config syntax changes in future (unlikely)
+        /// </summary>
         private static IEnumerable<string> ReadDefaultImportsFromNearestWebConfig(string inputFileName)
         {
             if (null == inputFileName) throw new ArgumentNullException("inputFileName");
@@ -280,6 +310,11 @@ namespace Org.RazorTextTemplatePreProcessor
                     .ToArray();
         }
 
+        /// <summary>
+        /// Returns web.config, nearest to given file.
+        /// The search begins at the folder associated with given file.
+        /// The search (is supposed to) stop at the solution folder.
+        /// </summary>
         private static string FindMyNearestWebConfig(string someFileName)
         {
             if (null == someFileName) throw new ArgumentNullException("someFileName");
