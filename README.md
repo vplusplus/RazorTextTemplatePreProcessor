@@ -1,7 +1,5 @@
-# Razor Text Template PreProcessor (Custom tool: RTT)
-
-Custom tool for pre-processing text generation templates using Razor syntax.
-Can generates self-contained assemblies for text generation using Razor syntax, with no runtime dependency on MVC
+# Razor Text Template PreProcessor 
+####(Custom tool: RTT)
 
 Provides a custom tool that can pre-process text templates using Razor syntax to self-contained and stand-alone text generation template with NO MVC dependency. 
 
@@ -15,19 +13,20 @@ The TextTemplate base class provides minimal signatures required for Razor synta
 The HtmlTemplate provides additional services like nested layouts, named sections, etc. which are typical of html generation.
 
 You can grab the default implementation of the base-class using following steps:
-1. Create an empty file named TextTemplate.cshtml or HtmlTemplate.cshtml
-2. Set Custom Tool name and generate
++ Create an empty file named TextTemplate.cshtml or HtmlTemplate.cshtml
++ Set Custom Tool name and generate
 
 The generated base-class can be left-alone as-is in the assembly (self-contained-model) or can be moved aside to a shared library.  
 
 If you customize the base class, to use the custom base-class for other templates:
-a) Update the nearest web config or
-b) Use standard @inherits Razor directive
++ Update the nearest web config or
++ Use standard @inherits Razor directive
 
-Supported Directives
-@** HelperPage *@
-@** namespace : CustomNamespace  *@
-@** classname : CustomClassName *@
-@** visibility : public | internal *@
-@** Remove#lines *@
+Supported Directives:
+
++ @** HelperPage *@
++ @** namespace : CustomNamespace  *@
++ @** classname : CustomClassName *@
++ @** visibility : public | internal *@
++ @** Remove#lines *@
 
