@@ -50,8 +50,20 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="SampleTemplates\Sample01.gen.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sample01.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="SampleTemplates\Sample01Base.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SampleTemplates\Sample01.cshtml">
+      <Generator>RTT</Generator>
+      <LastGenOutput>Sample01.gen.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

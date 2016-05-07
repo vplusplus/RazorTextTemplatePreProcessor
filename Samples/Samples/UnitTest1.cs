@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Samples.SampleTemplates;
 
 namespace Samples
 {
@@ -7,8 +8,11 @@ namespace Samples
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void RenderSample01()
         {
+            var template = new Sample01();
+            var output = template.Render();
+            Console.WriteLine(output);
         }
     }
 }
