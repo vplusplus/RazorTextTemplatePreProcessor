@@ -47,7 +47,7 @@ The third signature which takes an `Action<TextWriter>` might look odd. If you a
 
 The third sample is identical to second, except the base class includes 13 signatures, to give a realistic view. While it is nice to have a minimalist approach, base-classes of first two  samples may prove to be very restrictive. For more practical result, a base class that supports following 13 signatures, with some minimal error handling will help. The Execute() signature is abstract and not implemented by the base class itself. The generated code is responsible for the implementation. 
 
-```
+```cs
   protected static void WriteLiteralTo(TextWriter writer, string value) {}
   protected static void WriteLiteralTo(TextWriter writer, object value) {}
   protected static void WriteLiteralTo(TextWriter writer, /*HelperResult*/ Action<TextWriter> value) { }
