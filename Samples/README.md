@@ -14,3 +14,13 @@ Once generated, you can leave the base-classes as-is in your assembly (self-cont
 
 ######Sample01: Absolute minimal template with just enough signatures
 
+Sample 01 uses followng base-class with following signatures.
+`
+  protected void WriteLiteral(object something);
+  protected void Write(object something);
+  protected abstract void Execute();
+`
+With this minimal signatures, many of the useful Razor features are not available.
+
+
+
