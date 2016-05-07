@@ -31,6 +31,52 @@ With this minimal signatures, many of the useful Razor features are not availabl
 + The execute method is flagged protected, since it is NOT meant to be invoked directly.
 + The Render() method (not required by Razor) provides an ability to invoke the text generation process.
 
+###### Sample 02
+
+Sample 2 adds support for @helper feature of Razor. Use of @helper would generate code that would require few additional signatures. The Sample02Base.cs has sample implementation of following additional signatures.
+
+```cs
+protected static void WriteLiteralTo(TextWriter output, string something);
+protected static void WriteTo(TextWriter output, object something);
+protected void Write( /* HelperResult */ Action<TextWriter> writeAction)
+```
+
+The third signature which takes an `Action<TextWriter>` might look odd. If you are familiar with internals of Razor (MVC), you would expect an HelperResult class here. In order to mimimize the moving parts, the RTT tool uses `Action<TextWriter>` instead. As such, the base-class should support the third signature above. Implementation of these signatures are very basic. Refer `Sample02Base.cs` for details.
+
+###### Sample 03 - Practical view on minimal signatures
+
+The third sample is identical to second, except the base class includes 13 signatures, to give a realistic view. While it is nice to have a minimalist approach, base-classes of first two  samples may prove to be very restrictive. For more practical result, a base class that supports following 13 signatures, with some minimal error handling will help. The Execute() signature is abstract and not implemented by the base class itself. The generated code is responsible for the implementation. 
+
+```cs
+  protected static void WriteLiteralTo(TextWriter writer, string value) {}
+  protected static void WriteLiteralTo(TextWriter writer, object value) {}
+  protected static void WriteLiteralTo(TextWriter writer, /*HelperResult*/ Action<TextWriter> value) { }
+
+  protected static void WriteTo(TextWriter writer, string value) { }
+  protected static void WriteTo(TextWriter writer, object value) { }
+  protected static void WriteTo(TextWriter writer, /*HelperResult*/ Action<TextWriter> value) { }
+
+  protected void WriteLiteral(string value) { }
+  protected void WriteLiteral(object value) { }
+  protected void WriteLiteral(/*HelperResult*/ Action<TextWriter> value) { }
+
+  protected void Write(string value) { }
+  protected void Write(object value) { }
+  protected void Write(/*HelperResult*/ Action<TextWriter> value) { }
+
+  protected abstract void Execute();
+```
+
+Refer Sample03Base.cs for complete implementation of above signatures. 
+
+While above signatures are good enough for pretty intense self-contained templates, they are not sufficient to support features like layouts and named sections. The gap is not too wide (refer subsequent samples). Nevertheless, at some point, you should take a practical view. If the objective is to have 100% of Razor features, you should not re-invent the wheel, instead, consider taking dependency on MVC DLLs.
+
+
+
+
+
+
+
 
 
 
