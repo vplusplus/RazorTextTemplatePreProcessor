@@ -12,6 +12,10 @@ If you are new to Razor or not there yet to start tinkering the base-classes, co
 
 Once generated, you can leave the base-classes as-is in your assembly (self-contained) or move them aside to a common assembly. In such case, your templates will take dependency on the common assembly you created. 
 
+###### Before you start
+
+> Following monolog assumes, you had successfully installed "Razor Text Template PreProcessor (RTT)" VSIX and the tool is working. It is OK if you are fishing around. No need to install the tool to follow-along below text.
+
 ######Sample01: Absolute minimal template with just enough signatures
 
 Sample 01 shows absolute minimal signatures required for leveraging surprisingly good set of Razor features in a self-contained template. The base-class supporting the template has following signatures.
@@ -71,8 +75,14 @@ Refer Sample03Base.cs for complete implementation of above signatures.
 
 While above signatures are good enough for pretty intense self-contained templates, they are not sufficient to support features like layouts and named sections. The gap is not too wide (refer subsequent samples). Nevertheless, at some point, you should take a practical view. If the objective is to have 100% of Razor features, you should not re-invent the wheel, instead, consider taking dependency on MVC DLLs.
 
+###### Taking a pause...
+
+If you cared to follow through this point, and wondering "why are we doing this", take a look at the references to the assembly containing the templates. It should just read "System". If you see any other references (MVC in particular), you are on a wrong trail.
+
+Objective of this tool is to enable self-contained text generation classes (which may happen to be HTML), using Razor syntax, while avoiding external dependencies. If you are not convinced, probably, you do not have such usecase. In such case, you should revert back to full MVC and stick to the basics.
 
 
+######You are welcome!
 
 
 
