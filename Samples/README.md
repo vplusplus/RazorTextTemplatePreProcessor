@@ -82,8 +82,7 @@ If you cared to follow through this point, and wondering "why are we doing this"
 Objective of this tool is to enable self-contained text generation classes (which may happen to be HTML), using Razor syntax, while avoiding external dependencies. If you are not convinced, probably, you do not have such usecase. In such case, you should revert back to full MVC and stick to the basics.
 
 
-
-
+######You are welcome!
 
 
 
