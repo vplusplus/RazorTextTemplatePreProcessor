@@ -1,0 +1,15 @@
+﻿@** Remove#Lines *@
+@inherits Sample02Base
+
+@Title("Hello World")
+
+@SomeDate(DateTime.Now)
+
+@helper Title(string title) { 
+    <h1>@title</h1>
+}
+
+@helper SomeDate(DateTime something)
+{
+    <h2>@something</h2>
+}

@@ -14,5 +14,14 @@ namespace Samples
             var output = template.Render();
             Console.WriteLine(output);
         }
+
+        [TestMethod]
+        public void RenderSample02()
+        {
+            var template = new Sample02();
+            var output = template.Render();
+            Console.WriteLine(output);
+        }
+
     }
 }

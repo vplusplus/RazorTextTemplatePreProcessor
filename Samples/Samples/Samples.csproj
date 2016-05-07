@@ -55,11 +55,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Sample01.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="SampleTemplates\Sample02Base.cs" />
     <Compile Include="SampleTemplates\Sample01Base.cs" />
+    <Compile Include="SampleTemplates\Sample02.gen.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sample02.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="SampleTemplates\Sample02.cshtml">
+      <Generator>RTT</Generator>
+      <LastGenOutput>Sample02.gen.cs</LastGenOutput>
+    </None>
     <None Include="SampleTemplates\Sample01.cshtml">
       <Generator>RTT</Generator>
       <LastGenOutput>Sample01.gen.cs</LastGenOutput>
