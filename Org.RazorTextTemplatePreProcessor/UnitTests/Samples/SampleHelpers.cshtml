@@ -2,8 +2,15 @@
 @** Namespace: ABC.XYZ *@
 @** ClassName: MyCustomClassName *@
 @** Visibility: internal *@
+@** Remove#Lines *@
 
-@helper MyHeader() {
-    <h1></h1>
+
+@helper Title(string something)
+{
+    <div class="title">@something</div>
 }
 
+@helper SubTitle(string something)
+{
+    <div class="subtitle">@something</div>
+}

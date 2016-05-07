@@ -1,0 +1,5 @@
+D:\MyGit\RazorTextTemplatePreProcessor\Org.RazorTextTemplatePreProcessor\UnitTests\bin\Debug\UnitTests.dll
+D:\MyGit\RazorTextTemplatePreProcessor\Org.RazorTextTemplatePreProcessor\UnitTests\bin\Debug\UnitTests.pdb
+D:\MyGit\RazorTextTemplatePreProcessor\Org.RazorTextTemplatePreProcessor\UnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\MyGit\RazorTextTemplatePreProcessor\Org.RazorTextTemplatePreProcessor\UnitTests\obj\Debug\UnitTests.dll
+D:\MyGit\RazorTextTemplatePreProcessor\Org.RazorTextTemplatePreProcessor\UnitTests\obj\Debug\UnitTests.pdb
