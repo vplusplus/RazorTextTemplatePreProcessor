@@ -12,6 +12,10 @@ If you are new to Razor or not there yet to start tinkering the base-classes, co
 
 Once generated, you can leave the base-classes as-is in your assembly (self-contained) or move them aside to a common assembly. In such case, your templates will take dependency on the common assembly you created. 
 
+###### Before you start
+
+> Following monolog assumes, you had successfully installed "Razor Text Template PreProcessor (RTT)" VSIX and the tool is working. It is OK if you are fishing around. No need to install the tool to follow-along below text.
+
 ######Sample01: Absolute minimal template with just enough signatures
 
 Sample 01 shows absolute minimal signatures required for leveraging surprisingly good set of Razor features in a self-contained template. The base-class supporting the template has following signatures.
