@@ -31,6 +31,21 @@ With this minimal signatures, many of the useful Razor features are not availabl
 + The execute method is flagged protected, since it is NOT meant to be invoked directly.
 + The Render() method (not required by Razor) provides an ability to invoke the text generation process.
 
+###### Sample 02
+
+Sample 2 adds support for @helper feature of Razor. Use of @helper would generate code that would require few additional signatures. The Sample02Base.cs has sample implementation of following additional signatures.
+
+```cs
+protected static void WriteLiteralTo(TextWriter output, string something);
+protected static void WriteTo(TextWriter output, object something);
+protected void Write(Action<TextWriter> writeAction)
+```
+
+The third signature which takes an `Action<TextWriter>` might look odd. If you are familiar with internals of Razor (MVC), you would expect an HelperResult class here. In order to mimimize the moving parts, the RTT tool uses `Action<TextWriter>` instead. As such, the base-class should support the third signature above. Implementation of these signatures are very basic. Refer `Sample02Base.cs` for details.
+
+
+
+
 
 
 
