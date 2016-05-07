@@ -16,7 +16,7 @@ Once generated, you can leave the base-classes as-is in your assembly (self-cont
 
 Sample 01 shows absolute minimal signatures required for leveraging surprisingly good set of Razor features in a self-contained template. The base-class supporting the template has following signatures.
 
-```
+```cs
 protected void WriteLiteral(object something);
 protected void Write(object something);
 protected abstract void Execute();
