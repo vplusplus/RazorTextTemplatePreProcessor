@@ -26,8 +26,8 @@ namespace Org.RazorTextTemplatePreProcessor
         // This code generation uses Action<TextWriter> in-place-of HelperResult.
         // The template base-class MUST support following signatures (in place of HelperResult)
         //.........................................................................................
-        //  void WriteLiteralTo(TextWriter writer, Action<TextWriter> writeAction)
-        //  void WriteTo(TextWriter writer, Action<TextWriter> writeAction)
+        //  void static WriteLiteralTo(TextWriter writer, Action<TextWriter> writeAction)
+        //  void static WriteTo(TextWriter writer, Action<TextWriter> writeAction)
         //  void WriteLiteral(Action<TextWriter> writeAction) 
         //  void Write(Action<TextWriter> writeAction)
         //.........................................................................................
