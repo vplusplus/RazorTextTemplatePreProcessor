@@ -50,6 +50,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="SampleTemplates\Sample03.gen.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sample03.cshtml</DependentUpon>
+    </Compile>
+    <Compile Include="SampleTemplates\Sample03Base.cs" />
     <Compile Include="SampleTemplates\Sample01.gen.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -62,10 +68,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Sample02.cshtml</DependentUpon>
     </Compile>
+    <Compile Include="SampleTemplates\TextTemplate.gen.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TextTemplate.cshtml</DependentUpon>
+    </Compile>
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="SampleTemplates\TextTemplate.cshtml">
+      <Generator>RTT</Generator>
+      <LastGenOutput>TextTemplate.gen.cs</LastGenOutput>
+    </None>
+    <None Include="SampleTemplates\Sample03.cshtml">
+      <Generator>RTT</Generator>
+      <LastGenOutput>Sample03.gen.cs</LastGenOutput>
+    </None>
     <None Include="SampleTemplates\Sample02.cshtml">
       <Generator>RTT</Generator>
       <LastGenOutput>Sample02.gen.cs</LastGenOutput>

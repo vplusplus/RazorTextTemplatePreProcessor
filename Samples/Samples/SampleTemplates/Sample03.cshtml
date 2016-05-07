@@ -1,0 +1,39 @@
+﻿@** Remove#Lines *@
+
+@inherits Sample03Base
+
+@{ 
+    var types = AppDomain
+        .CurrentDomain
+        .GetAssemblies()
+        .SelectMany(x => x.GetTypes())
+        .ToList()
+        ;
+}
+
+<h1>Types currently loaded...</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Namespace</th>
+            <th>Name</th>
+            <th>Assembly</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in types)
+        {
+            @RenderRow(t)
+        }
+    </tbody>
+</table>
+
+@helper RenderRow(Type t)
+{ 
+    <tr>
+        <td>@t.Namespace</td>
+        <td>@t.Name</td>
+        <td>@t.Assembly.GetName().Name</td>
+    </tr>
+}
