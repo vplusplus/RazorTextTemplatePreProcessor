@@ -53,6 +53,8 @@ namespace Org.RazorTextTemplatePreProcessor
 
             public MyRazorTextTemplateHost(MyRazorDirectives directives) : base(directives.VirtualPath, directives.PhysicalPath)
             {
+                if (null == directives) throw new ArgumentNullException("directives");
+
                 this.Directives = directives;
 
                 //.......................................................
@@ -229,7 +231,7 @@ namespace Org.RazorTextTemplatePreProcessor
             if (null == context) throw new ArgumentNullException("content");
 
             const string writeObjectLiteralTo = @"
-            if (null != writer && null != value) writer.Write(Convert.ToString(value));
+            if (null != writer && null != value) writer.Write(value);
             ";
 
             const string writeStringLiteralTo = @"
@@ -237,7 +239,7 @@ namespace Org.RazorTextTemplatePreProcessor
             ";
 
             const string writeActionLiteralTo = @"
-            if (null != writer && null != value) value(writer);
+            if (null != writer && null != value) value(writer); // in-lieu-of HelperResult
             ";
 
             const string writeTo = @"
