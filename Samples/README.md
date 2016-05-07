@@ -43,7 +43,31 @@ protected void Write(Action<TextWriter> writeAction)
 
 The third signature which takes an `Action<TextWriter>` might look odd. If you are familiar with internals of Razor (MVC), you would expect an HelperResult class here. In order to mimimize the moving parts, the RTT tool uses `Action<TextWriter>` instead. As such, the base-class should support the third signature above. Implementation of these signatures are very basic. Refer `Sample02Base.cs` for details.
 
+###### Sample 03 - Practical view on minimal signatures
 
+The third sample is identical to second, except the base class includes 13 signatures, to give a realistic view. While it is nice to have a minimalist approach, base-classes of first two  samples may prove to be very restrictive. For more practical result, a base class that supports following 13 signatures, with some minimal error handling will help. The Execute() signature is abstract and not implemented by the base class itself. The generated code is responsible for the implementation. 
+
+```
+  protected static void WriteLiteralTo(TextWriter writer, string value) {}
+  protected static void WriteLiteralTo(TextWriter writer, object value) {}
+  protected static void WriteLiteralTo(TextWriter writer, /*HelperResult*/ Action<TextWriter> value) { }
+
+  protected static void WriteTo(TextWriter writer, string value) { }
+  protected static void WriteTo(TextWriter writer, object value) { }
+  protected static void WriteTo(TextWriter writer, /*HelperResult*/ Action<TextWriter> value) { }
+
+  protected void WriteLiteral(string value) { }
+  protected void WriteLiteral(object value) { }
+  protected void WriteLiteral(/*HelperResult*/ Action<TextWriter> value) { }
+
+  protected void Write(string value) { }
+  protected void Write(object value) { }
+  protected void Write(/*HelperResult*/ Action<TextWriter> value) { }
+
+  protected abstract void Execute();
+```
+
+The 13th sign
 
 
 
