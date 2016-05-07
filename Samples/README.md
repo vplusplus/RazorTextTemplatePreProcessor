@@ -24,7 +24,7 @@ protected abstract void Execute();
 
 With this minimal signatures, many of the useful Razor features are not available. One particular feature that will not work is using @helper(s). From here on, you can progressively add additional Razor text and start isolating the breaking point. (It it compiles it should work).
 
-##### Few other points on the Sample 01
+######Few other points on the generated code
 
 + The @** Remove#Lines *@ directive at the top, as the name suggestes, removes #line directives from generated code. This is useful to review generated code. Nevertheless, doing so will take away ability to single-step through the Razor source while debugging. Try enabling and disabling the option and checkout debugging experience.
 + The generated class is marked  partial, this way, you can add supporting features in a buddy-class
