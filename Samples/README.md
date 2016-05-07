@@ -26,8 +26,8 @@ With this minimal signatures, many of the useful Razor features are not availabl
 
 ##### Few other points on the Sample 01
 
-1. The @** Remove#Lines *@ directive at the top, as the name suggestes, removed #line directives from generated code. This is useful to review generated code. Nevertheless, doing so will take away ability to single-step through the Razor source while debugging. Try enabling and disabling the option and checkout debugging experience.
-2. The generated class is marked  partial, this way, you can add supporting features in a buddy-class
++ The @** Remove#Lines *@ directive at the top, as the name suggestes, removed #line directives from generated code. This is useful to review generated code. Nevertheless, doing so will take away ability to single-step through the Razor source while debugging. Try enabling and disabling the option and checkout debugging experience.
++ The generated class is marked  partial, this way, you can add supporting features in a buddy-class
 
 
 
