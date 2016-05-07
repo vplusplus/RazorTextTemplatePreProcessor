@@ -73,7 +73,7 @@ While above signatures are good enough for pretty intense self-contained templat
 
 ###### Taking a pause...
 
-If you cared to follow through this point, and wondering "why are we doing this", take a look at the references to the assembly containing the templates. It should just read "System". If you see inadvertently added any other references (MVC in particular), you are on a wrong trail.
+If you cared to follow through this point, and wondering "why are we doing this", take a look at the references to the assembly containing the templates. It should just read "System". If you see any other references (MVC in particular), you are on a wrong trail.
 
 Objective of this tool is to enable self-contained text generation classes (which may happen to be HTML), using Razor syntax, while avoiding external dependencies. If you are not convinced, probably, you do not have such usecase. In such case, you should revert back to full MVC and stick to the basics.
 
