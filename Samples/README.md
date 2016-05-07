@@ -71,6 +71,13 @@ Refer Sample03Base.cs for complete implementation of above signatures.
 
 While above signatures are good enough for pretty intense self-contained templates, they are not sufficient to support features like layouts and named sections. The gap is not too wide (refer subsequent samples). Nevertheless, at some point, you should take a practical view. If the objective is to have 100% of Razor features, you should not re-invent the wheel, instead, consider taking dependency on MVC DLLs.
 
+###### Taking a pause...
+
+If you cared to follow through this point, and wondering "why are we doing this", take a look at the references to the assembly containing the templates. It should just read "System". If you see inadvertently added any other references (MVC in particular), you are on a wrong trail.
+
+Objective of this tool is to enable self-contained text generation classes (which may happen to be HTML), using Razor syntax, while avoiding external dependencies. If you are not convinced, probably, you do not have such usecase. In such case, you should revert back to full MVC and stick to the basics.
+
+
 
 
 
