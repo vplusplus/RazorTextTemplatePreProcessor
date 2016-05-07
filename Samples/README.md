@@ -14,14 +14,18 @@ Once generated, you can leave the base-classes as-is in your assembly (self-cont
 
 ######Sample01: Absolute minimal template with just enough signatures
 
-Sample 01 uses followng base-class with following signatures.
+Sample 01 shows absolute minimal signatures required for leveraging surprisingly good set of Razor features in a self-contained template. The base-class supporting the template has following signatures.
+
 ```
 protected void WriteLiteral(object something);
 protected void Write(object something);
 protected abstract void Execute();
 ```
-`
-With this minimal signatures, many of the useful Razor features are not available.
+
+With this minimal signatures, many of the useful Razor features are not available. One particular feature that will not work is using @helper(s). From here on, you can progressively add additional Razor text and start isolating the breaking point. (It it compiles it should work).
+
+
+
 
 
 
