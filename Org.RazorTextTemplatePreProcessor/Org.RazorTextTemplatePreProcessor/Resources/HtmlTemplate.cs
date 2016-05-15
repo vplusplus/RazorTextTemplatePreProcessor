@@ -1,17 +1,15 @@
 ﻿#pragma warning disable 1591
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+
 namespace NAMESPACE
 {
-    #region using...
-    using System;
-    using System.Collections.Concurrent;
-    using System.Collections.Generic;
-    using System.Dynamic;
-    using System.IO;
-    using System.Linq;
-    using System.Net;
-    using System.Text;
-    #endregion
-
     //.............................................................................................
     #region HtmlRenderingBase - Essential signatures to write string, object and Action<TextWriter> to Output
     //.............................................................................................
@@ -29,6 +27,7 @@ namespace NAMESPACE
         {
             if (null != writer && null != value) writer.Write(Convert.ToString(value));
         }
+
         protected static void WriteTo(TextWriter writer, string value) 
         {
             WriteLiteralTo(writer, WebUtility.HtmlEncode(value));
@@ -45,6 +44,7 @@ namespace NAMESPACE
         protected void WriteLiteral(string value)               { WriteLiteralTo(Output, value); }
         protected void WriteLiteral(Action<TextWriter> value)   { WriteLiteralTo(Output, value); }
         protected void WriteLiteral(object value)               { WriteLiteralTo(Output, value); }
+
         protected void Write(string value)                      { WriteTo(Output, value);        }
         protected void Write(Action<TextWriter> value)          { WriteTo(Output, value);        }
         protected void Write(object value)                      { WriteTo(Output, value);        }

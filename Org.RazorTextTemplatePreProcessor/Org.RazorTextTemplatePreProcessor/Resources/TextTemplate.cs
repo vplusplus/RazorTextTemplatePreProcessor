@@ -1,17 +1,13 @@
 ﻿#pragma warning disable 1591
+using System;
+using System.IO;
+using System.Text;
+
 namespace NAMESPACE
 {
-    #region using...
-
-    using System;
-    using System.IO;
-    using System.Text;
-
-    #endregion
-
-    //.............................................................................................
-    #region TextTemplate - Provides essential signatures for writing string, Action<TextWriter> and object
-    //.............................................................................................
+    /// <summary>
+    /// Provides essential signatures for writing string, Action[TextWriter] and object
+    /// </summary>
     public abstract partial class TextTemplate
     {
         private StringWriter Output = null;
@@ -50,11 +46,9 @@ namespace NAMESPACE
         protected abstract void Execute();
     }
 
-    #endregion
-
-    //.............................................................................................
-    #region TextTemplate<T> - With model support
-    //.............................................................................................
+    /// <summary>
+    /// Provides essential signatures for writing string, Action<TextWriter> and object
+    /// </summary>
     public abstract partial class TextTemplate<TModel> : TextTemplate
     {
         public TModel Model
@@ -75,7 +69,5 @@ namespace NAMESPACE
             }
         }
     }
-    #endregion
-
 }
 #pragma warning restore 1591

@@ -68,7 +68,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Resources\ReadMe.txt" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
